@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     (<div className="max-w-md mx-auto min-h-screen flex flex-col p-2">
-      <div className="flex justify-between items-start mb-2 py-4 flex-grow ">
+      <div className="flex justify-between items-start  flex-grow ">
         <div>
           <h1 className="text-lg font-bold">Isaac Winner</h1>
           <p className="text-gray-500 text-sm shadow-xl shadow-neutral-300">ID: 0087322</p>
@@ -61,7 +61,7 @@ export default function Home() {
           <Image src='/wallet.gif' alt='Wallet.gif' width={45} height={50} />
         </div>
       </div>
-      <div className="bg-gradient-to-r from-neutral-200 to-green-400 shadow-inner shadow-green-800 rounded-3xl p-3 mb-20 mt-5 flex-grow">
+      <div className="bg-gradient-to-r from-neutral-200 to-green-400 shadow-inner shadow-green-800 rounded-3xl p-3 mb-7 flex-grow">
         <h2 className="text-center mb-2 font-bold">Current Balance</h2>
         <div
           className="flex items-center justify-center gap-2 text-3xl font-bold mb-2">
