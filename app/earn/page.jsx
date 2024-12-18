@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export default function Earn() {
   return (
-    (<div className="max-w-md mx-auto p-4 pb-24">
+    (<div className="max-w-md mx-auto p-4 min-h-screen flex flex-col">
       <h1 className="text-3xl font-bold mb-6 font-mono">Earn MLC</h1>
       <div className="grid gap-4">
         <Card className="bg-gradient-to-b from-neutral-200 to-green-600 border-fuchsia-500/50">

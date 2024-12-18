@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 
 export default function Invite() {
   return (
-    (<div className="max-w-md mx-auto p-4 pb-24">
+    (<div className="max-w-md mx-auto p-4 min-h-screen flex flex-col">
       <h1 className="text-3xl font-bold mb-6">Invite Friends</h1>
-      <Card className="bg-green border-white mb-6">
+      <Card className="bg-green border-white mb-6 flex-grow">
         <CardHeader>
           <CardTitle className="text-green-700">Your Referral Code</CardTitle>
           <CardDescription className="text-white opacity-60">Share this code with friends to earn rewards</CardDescription>
