@@ -50,8 +50,8 @@ export default function Home() {
   }, [canClaim])
 
   return (
-    (<div className="max-w-md mx-auto min-h-screen flex flex-col p-2">
-      <div className="flex justify-between items-start mb-10">
+    (<div className="max-w-md mx-auto min-h-screen flex flex-col p-1">
+      <div className="flex justify-between items-start mb-4">
         <div>
           <h1 className="text-lg font-bold">Isaac Winner</h1>
           <p className="text-gray-500 text-sm shadow-xl shadow-neutral-300">ID: 0087322</p>
@@ -64,7 +64,7 @@ export default function Home() {
 
 
 
-      <div className="bg-gradient-to-r from-neutral-200 to-green-400 shadow-inner shadow-green-800 rounded-3xl p-3 mt-7 flex-grow ">
+      <div className="bg-gradient-to-r from-neutral-200 to-green-400 shadow-inner shadow-green-800 rounded-3xl p-3 ">
         <h2 className="text-center mb-2 font-bold">Current Balance</h2>
         <div
           className="flex items-center justify-center gap-2 text-3xl font-bold mb-2">
