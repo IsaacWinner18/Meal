@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     (<div className="max-w-md mx-auto min-h-screen flex flex-col p-2">
-      <div className="flex justify-between items-start  flex-grow ">
+      <div className="flex justify-between items-start mb-10">
         <div>
           <h1 className="text-lg font-bold">Isaac Winner</h1>
           <p className="text-gray-500 text-sm shadow-xl shadow-neutral-300">ID: 0087322</p>
@@ -61,7 +61,10 @@ export default function Home() {
           <Image src='/wallet.gif' alt='Wallet.gif' width={45} height={50} />
         </div>
       </div>
-      <div className="bg-gradient-to-r from-neutral-200 to-green-400 shadow-inner shadow-green-800 rounded-3xl p-3 mb-7 flex-grow">
+
+
+
+      <div className="bg-gradient-to-r from-neutral-200 to-green-400 shadow-inner shadow-green-800 rounded-3xl p-3 mt-7 flex-grow ">
         <h2 className="text-center mb-2 font-bold">Current Balance</h2>
         <div
           className="flex items-center justify-center gap-2 text-3xl font-bold mb-2">
@@ -72,8 +75,11 @@ export default function Home() {
         <div className="bg-green-300 rounded-full text-center my-4 shadow-inner shadow-green-600 inset-">
           <span className="text-blue-950 text-xs font-mono">EARNING RATE +400.00 MLC/hr</span>
         </div>
-      </div>
-      <div className="bg-gradient-to-t from-green-400 to-white rounded-3xl px-6 py-5 shadow-xl shadow-blue-00">
+
+        
+{/* Not a component but sha  */}
+
+        <div className="bg-gradient-to-t from-green-400 to-white rounded-3xl px-6 py-5 shadow-xl shadow-blue-00 mt-16">
         <h2 className="text-lg text-center mb-3">Next GRAB!</h2>
         <Progress value={progress} className="mb-4" />
         <div className="mx-16">
@@ -92,6 +98,8 @@ export default function Home() {
            <span> Available</span> 
           </div>
       </div>
+      </div>
+      
 
       <Footer />
       
