@@ -12,48 +12,96 @@ import Footer from "@/components/Footer"
 
 
 export default function Home() {
-  const [balance, setBalance] = useState(1.00)
-  const [progress, setProgress] = useState(0)
-  const [canClaim, setCanClaim] = useState(true)
+  const [username] = useState("eliot200");
+  const [balance, setBalance] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [canClaim, setCanClaim] = useState(true);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setBalance(prev => prev + (100.00 / 3600)) // Increment per second based on hourly rate
-    }, 1000)
-    return () => clearInterval(timer);
-  }, [])
+const fetchData = async () => {
 
-  const handleClaim = () => {
+  try {
+  const response = await fetch("http://localhost:5000/register-dashboard", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({ username, mlcoin: balance })
+  })
+if(!response.ok) {
+  throw new Error("failed to register")
+  console.log(response)
+}
+const data = await response.json();
+console.log(data.user.mlcoin)
+setBalance(data.user.mlcoin)
+}
+catch (error) {
+  console.log(`Fetch error: ${error.message}`);
+}
+
+}
+
+const handleClaim = async () => {
     if (canClaim) {
-      setBalance(prev => prev + 1000)
+
+try {
+
+  const response = await fetch("http://localhost:5000/update-dashboard", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({ username })
+  })
+if(!response.ok) {
+  throw new Error("failed to update mlcoin")
+}
+const data = await response.json();
+      setBalance(data.user.mlcoin)
       setProgress(0)
       setCanClaim(false)
       setTimeout(() => {
         setCanClaim(true)
-      }, 5000) // Reset after 5 seconds
-    }
+      }, 600) // Reset after 5 seconds
+    
   }
+catch (error) {
+console.log(`The ${error}`)
+}
+  };
+};
 
+useEffect(() => {
+  fetchData();
+}, []);
+
+  
   useEffect(() => {
     if (!canClaim) {
+      const interval = 600;
+      const increment = 100 / ( 600 / interval );
+
+
       const timer = setInterval(() => {
         setProgress(prev => {
           if (prev >= 100) {
             clearInterval(timer)
             return 100
           }
-          return prev + 2
+          return prev + increment;
         })
-      }, 100)
+      }, interval)
       return () => clearInterval(timer);
     }
   }, [canClaim])
 
   return (
     (<div className="max-w-md mx-auto min-h-screen flex flex-col p-1">
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-4 p-2">
         <div>
-          <h1 className="text-lg font-bold">Isaac Winner</h1>
+          <h1 className="text-lg font-bold">winner123</h1>
           <p className="text-gray-500 text-sm shadow-xl shadow-neutral-300">ID: 0087322</p>
         </div>
         <div className="rounded-lg shadow-xl shadow-green-700">
@@ -69,11 +117,11 @@ export default function Home() {
         <div
           className="flex items-center justify-center gap-2 text-3xl font-bold mb-2">
           <ArrowUp className="text-blue-200 bg-green-600 rounded-full p-1" />
-          <span className="text-neutral-800">{balance.toFixed(2)}</span>
+          <span className="text-neutral-800">{balance}</span>
           <span className="text-neutral-200 shadow-xl shadow-blue-100 hover:text-neutral-300">MLC</span>
         </div>
         <div className="bg-green-300 rounded-full text-center my-4 shadow-inner shadow-green-600 inset-">
-          <span className="text-blue-950 text-xs font-mono">EARNING RATE +400.00 MLC/hr</span>
+          <span className="text-blue-950 text-xs font-mono">EARNING RATE +400.00 MLC/hr </span>
         </div>
 
         
