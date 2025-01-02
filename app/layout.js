@@ -1,4 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
+// import Head from "next/head";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,6 +21,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+   
+      <Script src="https://telegram.org/js/telegram-web-app.js?56" async=""></Script>
+      
+ 
+ 
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-gradient-to-b from-neutral-200 to-green-600 antialiased`}
       >
