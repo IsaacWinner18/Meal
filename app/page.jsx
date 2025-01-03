@@ -15,29 +15,25 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
   const [canClaim, setCanClaim] = useState(true);
 
-  useEffect(() => {
-    // if (TelegramWebAppContainer) {
+  // useEffect(() => {
+  //   // Check if the Telegram WebApp object exists
+  //   if (typeof window !== "undefined" && window.Telegram) {
+  //     const webApp = window.Telegram.WebApp;
 
-    //   const tg = new TelegramWebAppContainer();
-    //   const user = tg.initDataUnsafe?.user;
-  
-    //   tg.WebApp.ready();
+  //     if (webApp?.initDataUnsafe?.user) {
+  //       const user = webApp.initDataUnsafe.user;
+        
+  //       // Mark the WebApp as ready
+  //       webApp.ready();
 
-    //   setFirstName("winner");
-    //   console.log("It is working", tg.version);
-    // } else {
-    //   console.log("Telegram is not available")
-    // }
-
-    if (webApp.initDataUnssafe.user) {
-      const tg = webApp.initDataUnssafe.user
-      tg.ready();
-
-      console.log("Window telegram initialized", tg.first_name);
-    } else {
-      console.log("telegram is not available");
-    }
-  }, []);
+  //       console.log("Window telegram initialized", user.first_name);
+  //     } else {
+  //       console.log("Telegram WebApp is not available or user data is missing.");
+  //     }
+  //   } else {
+  //     console.log("Telegram WebApp SDK not loaded.");
+  //   }
+  // }, []);
 
   const fetchData = async () => {
     try {
