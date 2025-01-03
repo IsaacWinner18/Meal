@@ -9,52 +9,34 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
-import { TelegramWebAppContainer } from '@telegram-web-app/core';
-import Script from "next/script";
-
 export default function Home() {
-  const [firstName, setFirstName] = useState();
+  const [firstName, setFirstName] = useState(null);
   const [balance, setBalance] = useState(0);
   const [progress, setProgress] = useState(0);
   const [canClaim, setCanClaim] = useState(true);
 
-  // useEffect(() => {
-  //   const Script = document.createElement("Script");
-  //   Script.src ="https://telegram.org/js/telegram-web-app.js?56";
-  //   Script.async = "true";
-
-  //   document.head.appendChild(Script)
-
-  //   return () => {
-  //     document.head.removeChild(Script)
-  //   }
-
-  // }, [])
-
   useEffect(() => {
-    if (TelegramWebAppContainer) {
+    // if (TelegramWebAppContainer) {
 
-      const tg = new TelegramWebAppContainer();
-      const user = tg.initDataUnsafe?.user;
+    //   const tg = new TelegramWebAppContainer();
+    //   const user = tg.initDataUnsafe?.user;
   
-      tg.WebApp.ready();
+    //   tg.WebApp.ready();
 
-      setFirstName("winner");
-      console.log("It is working", tg.version);
-    } else {
-      console.log("Telegram is not available")
-    }
-
-    // if (window.Telegram?.WebApp) {
-    //   const tg = window.Telegram.WebApp;
-    //   const user = tg.initData.user;
-    //   tg.ready();
-
-    //   console.log("Window telegram initialized");
-    //   console.log(user.first_name)
+    //   setFirstName("winner");
+    //   console.log("It is working", tg.version);
     // } else {
-    //   console.log("telegram is not available");
+    //   console.log("Telegram is not available")
     // }
+
+    if (webApp.initDataUnssafe.user) {
+      const tg = webApp.initDataUnssafe.user
+      tg.ready();
+
+      console.log("Window telegram initialized", tg.first_name);
+    } else {
+      console.log("telegram is not available");
+    }
   }, []);
 
   const fetchData = async () => {
@@ -130,11 +112,6 @@ export default function Home() {
 
   return (
     <div className="max-w-md mx-auto min-h-screen flex flex-col p-1">
-      {/* <Script
-        src="https://telegram.org/js/telegram-web-app.js?56"
-        strategy="lazyOnload"
-        onLoad={() => console.log("Telegram Web App script loaded")}
-      ></Script> */}
 
       <div className="flex justify-between items-start mb-4 p-2">
         <div>
