@@ -16,25 +16,60 @@ export default function Home() {
   const [canClaim, setCanClaim] = useState(true);
 
   useEffect(() => {
-    // Check if the Telegram WebApp object exists
+    const loadTelegramSDK = () => {
+      if (typeof window.Telegram === "undefined") {
+        const script = document.createElement("script");
+        script.src = "https://telegram.org/js/telegram-web-app.js";
+        script.onload = () => {
+          console.log("Telegram WebApp SDK loaded.");
+        };
+        script.onerror = () => {
+          console.error("Failed to load Telegram WebApp SDK.");
+        };
+        document.head.appendChild(script);
+      } else {
+        console.log("Telegram WebApp SDK already loaded.");
+      }
+    };
+
+    loadTelegramSDK();
+
+    // Example usage after SDK is loaded
     if (typeof window !== "undefined" && window.Telegram) {
       const webApp = window.Telegram.WebApp;
 
       if (webApp?.initDataUnsafe?.user) {
         const user = webApp.initDataUnsafe.user;
-        
-        // Mark the WebApp as ready
         webApp.ready();
-
-        console.log("Window telegram initialized", user.first_name);
         setFirstName(user.first_name)
+        console.log("User's first name:", user.first_name);
       } else {
-        console.log("Telegram WebApp is not available or user data is missing.");
+        console.log("User data not available.");
       }
-    } else {
-      console.log("Telegram WebApp SDK not loaded.");
     }
   }, []);
+
+
+  // useEffect(() => {
+  //   // Check if the Telegram WebApp object exists
+  //   if (typeof window !== "undefined" && window.Telegram) {
+  //     const webApp = window.Telegram.WebApp;
+
+  //     if (webApp?.initDataUnsafe?.user) {
+  //       const user = webApp.initDataUnsafe.user;
+        
+  //       // Mark the WebApp as ready
+  //       webApp.ready();
+
+  //       console.log("Window telegram initialized", user.first_name);
+  //       setFirstName(user.first_name)
+  //     } else {
+  //       console.log("Telegram WebApp is not available or user data is missing.");
+  //     }
+  //   } else {
+  //     console.log("Telegram WebApp SDK not loaded.");
+  //   }
+  // }, []);
 
   const fetchData = async () => {
     try {
