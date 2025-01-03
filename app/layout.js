@@ -22,7 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
    
-      <Script src="https://telegram.org/js/telegram-web-app.js?56" async=""></Script>
+   {/* <Script
+        src="https://telegram.org/js/telegram-web-app.js?56"
+       defer
+        
+      ></Script> */}
       
  
  

@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 
+import { TelegramWebAppContainer } from '@telegram-web-app/core';
 import Script from "next/script";
 
 export default function Home() {
@@ -18,31 +19,41 @@ export default function Home() {
   const [canClaim, setCanClaim] = useState(true);
 
   // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src ="https://telegram.org/js/telegram-web-app.js";
-  //   script.async = "true";
+  //   const Script = document.createElement("Script");
+  //   Script.src ="https://telegram.org/js/telegram-web-app.js?56";
+  //   Script.async = "true";
 
-  //   document.head.appendChild(script)
+  //   document.head.appendChild(Script)
 
   //   return () => {
-  //     document.head.removeChild(script)
+  //     document.head.removeChild(Script)
   //   }
 
   // }, [])
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.Telegram?.WebApp) {
-        const tg = window.Telegram.WebApp;
-        const user = tg.initData.user;
-        tg.ready();
+    if (TelegramWebAppContainer) {
 
-        console.log("Window telegram initialized");
-        console.log(user.first_name)
-      } else {
-        console.log("telegram is not available");
-      }
+      const tg = new TelegramWebAppContainer();
+  
+      // When yor app is ready
+      tg.WebApp.ready();
+  
+      console.log(tg.version);
+    } else {
+      console.log("Telegram is not available")
     }
+
+    // if (window.Telegram?.WebApp) {
+    //   const tg = window.Telegram.WebApp;
+    //   const user = tg.initData.user;
+    //   tg.ready();
+
+    //   console.log("Window telegram initialized");
+    //   console.log(user.first_name)
+    // } else {
+    //   console.log("telegram is not available");
+    // }
   }, []);
 
   const fetchData = async () => {
@@ -96,7 +107,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-    setFirstName(user.first_name);
+    setFirstName(tg.version);
   }, []);
 
   useEffect(() => {
@@ -119,11 +130,11 @@ export default function Home() {
 
   return (
     <div className="max-w-md mx-auto min-h-screen flex flex-col p-1">
-      <Script
+      {/* <Script
         src="https://telegram.org/js/telegram-web-app.js?56"
         strategy="lazyOnload"
         onLoad={() => console.log("Telegram Web App script loaded")}
-      ></Script>
+      ></Script> */}
 
       <div className="flex justify-between items-start mb-4 p-2">
         <div>
