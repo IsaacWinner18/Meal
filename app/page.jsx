@@ -39,8 +39,7 @@ export default function Home() {
   
       tg.WebApp.ready();
 
-      const username = user.username;
-      setFirstName(username);
+      setFirstName("winner");
       console.log("It is working", tg.version);
     } else {
       console.log("Telegram is not available")
