@@ -13,7 +13,7 @@ import { TelegramWebAppContainer } from '@telegram-web-app/core';
 import Script from "next/script";
 
 export default function Home() {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState();
   const [balance, setBalance] = useState(0);
   const [progress, setProgress] = useState(0);
   const [canClaim, setCanClaim] = useState(true);
@@ -35,11 +35,13 @@ export default function Home() {
     if (TelegramWebAppContainer) {
 
       const tg = new TelegramWebAppContainer();
+      const user = tg.initDataUnsafe?.user;
   
-      // When yor app is ready
       tg.WebApp.ready();
-  
-      console.log(tg.version);
+
+      const username = user.username;
+      setFirstName(username);
+      console.log("It is working", tg.version);
     } else {
       console.log("Telegram is not available")
     }
@@ -68,7 +70,6 @@ export default function Home() {
       });
       if (!response.ok) {
         throw new Error("failed to register");
-        console.log(response);
       }
       const data = await response.json();
       console.log(data.user.mlcoin);
@@ -107,7 +108,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-    setFirstName(tg.version);
+  
   }, []);
 
   useEffect(() => {
