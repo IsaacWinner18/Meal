@@ -34,10 +34,11 @@ export default function Home() {
     if (typeof window !== "undefined") {
       if (window.Telegram?.WebApp) {
         const tg = window.Telegram.WebApp;
-        const user = tg.initData;
+        const user = tg.initData.user;
         tg.ready();
 
         console.log("Window telegram initialized");
+        console.log(user.first_name)
       } else {
         console.log("telegram is not available");
       }
@@ -95,7 +96,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-    setFirstName("Winner");
+    setFirstName(user.first_name);
   }, []);
 
   useEffect(() => {

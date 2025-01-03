@@ -1,12 +1,21 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Copy, Share2, Trophy } from "lucide-react"
-import Footer from "@/components/Footer";
+
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Invite() {
   return (
     (<div className="max-w-md mx-auto p-4 min-h-screen flex flex-col">
-      <h1 className="text-3xl font-bold mb-6">Invite Friends</h1>
+
+      <div className="flex items-center justify-between mb-3">
+      <Link href="/">
+        <Image src="/back-buttons-multimedia-svgrepo-com.svg" alt="svg back in earn" width={50} height={50} />
+        </Link>
+      <h1 className="text-3xl font-bold ">Invite Friends</h1>
+
+      </div>
       <Card className="bg-green border-white mb-6">
         <CardHeader>
           <CardTitle className="text-green-700">Your Referral Code</CardTitle>
@@ -53,7 +62,7 @@ export default function Invite() {
         </Button>
       </div>
 
-      <Footer />
+   
     </div>)
   );
 }

@@ -1,12 +1,19 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Gift, PlayCircle, Share2 } from "lucide-react"
-import Footer from "@/components/Footer";
+import Image from "next/image";
+import Link from 'next/link';
 
 export default function Earn() {
   return (
     (<div className="max-w-md mx-auto p-4 min-h-screen flex flex-col">
-      <h1 className="text-3xl font-bold mb-6 font-mono">Earn MLC</h1>
+      <div className="flex items-center justify-between mb-3">
+        <Link href="/">
+        <Image src="/back-buttons-multimedia-svgrepo-com.svg" alt="svg back in earn" width={50} height={50} />
+        </Link>
+      <h1 className="text-3xl font-bold font-mono">Earn MLC</h1>
+
+      </div>
       <div className="grid gap-4">
         <Card className="bg-gradient-to-b from-neutral-200 to-green-600 border-fuchsia-500/50">
           <CardHeader>
@@ -54,7 +61,6 @@ export default function Earn() {
         </Card>
       </div>
 
-      <Footer />
     </div>)
   );
 }
