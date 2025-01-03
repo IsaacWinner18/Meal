@@ -27,6 +27,7 @@ export default function Home() {
         webApp.ready();
 
         console.log("Window telegram initialized", user.first_name);
+        setFirstName(user.first_name)
       } else {
         console.log("Telegram WebApp is not available or user data is missing.");
       }
